@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="code1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Desktop/Java/code/code" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/Java/code/code" />
+      <root url="file://$USER_HOME$/Desktop/Java/code/code/io" />
+      <root url="file://$USER_HOME$/Desktop/Java/code/code/io/xfiles" />
+    </SOURCES>
+  </library>
+</component>
