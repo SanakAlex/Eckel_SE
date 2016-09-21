@@ -7,13 +7,13 @@ import static C_8.RandomRodentGenerator.nextRodent;
 /**
  * Created by Alex on 17.09.2016.
  */
-enum Meal {
+enum Meals {
     MEAT, FRUIT, NUT, GRASS
 }
 
 class Rodent {
-    void eat(Meal meal){
-        System.out.println(this + " eats " + meal);
+    void eat(Meals meals){
+        System.out.println(this + " eats " + meals);
     }
     public String toString(){
         return "Rodent";
@@ -52,7 +52,7 @@ class RandomRodentGenerator {
 
 public class Ex_9 {
     private static void eatingTime(Rodent rodent){
-        rodent.eat(Meal.FRUIT);
+        rodent.eat(Meals.FRUIT);
     }
 
     static void eatingTimeForAll(Rodent[] rodents){
