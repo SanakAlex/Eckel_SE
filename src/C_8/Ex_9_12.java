@@ -12,6 +12,9 @@ enum Meals {
 }
 
 class Rodent {
+    Rodent() {
+        System.out.println("Rodent()");
+    }
     void eat(Meals meals){
         System.out.println(this + " eats " + meals);
     }
@@ -21,26 +24,48 @@ class Rodent {
 }
 
 class Mouse extends Rodent {
+    Mouse() {
+        System.out.println("Mouse()");
+    }
     public String toString(){
         return "Mouse";
     }
 }
 
 class Hamster extends Rodent {
+    Hamster() {
+        System.out.println("Hamster()");
+    }
     public String toString(){
         return "Hamster";
     }
 }
 
 class Rat extends Rodent {
+    Rat() {
+        System.out.println("Rat()");
+    }
     public String toString(){
         return "Rat";
     }
 }
 
+class Zoo {
+    Rodent rot;
+    Mouse mouse;
+    Hamster hamster;
+    Rat rat;
+    Zoo(){
+        Rodent rot = new Rodent();
+        Mouse mouse = new Mouse();
+        Hamster hamster = new Hamster();
+        Rat rat = new Rat();
+    }
+}
+
 class RandomRodentGenerator {
     private static Random random = new Random();
-    public static Rodent nextRodent(){
+    static Rodent nextRodent(){
         switch (random.nextInt(3)){
             default:
             case 0: return new Mouse();
@@ -50,21 +75,23 @@ class RandomRodentGenerator {
     }
 }
 
-public class Ex_9 {
+public class Ex_9_12 {
     private static void eatingTime(Rodent rodent){
         rodent.eat(Meals.FRUIT);
     }
 
-    static void eatingTimeForAll(Rodent[] rodents){
+    private static void eatingTimeForAll(Rodent[] rodents){
         for (Rodent rodent : rodents){
             eatingTime(rodent);
         }
     }
     public static void main(String[] args) {
-        Rodent[] rodents = new Rodent[new Random().nextInt(10) + 1];
-        for (int i = 0; i < rodents.length; i++){
-            rodents[i] = nextRodent();
-        }
-        eatingTimeForAll(rodents);
+//        Rodent[] rodents = new Rodent[new Random().nextInt(10) + 1];
+//        for (int i = 0; i < rodents.length; i++){
+//            rodents[i] = nextRodent();
+//        }
+//        eatingTimeForAll(rodents);
+
+        Zoo zoo = new Zoo();
     }
 }
