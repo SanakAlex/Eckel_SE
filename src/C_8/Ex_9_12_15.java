@@ -75,7 +75,7 @@ class RandomRodentGenerator {
     }
 }
 
-public class Ex_9_12 {
+public class Ex_9_12_15 {
     private static void eatingTime(Rodent rodent){
         rodent.eat(Meals.FRUIT);
     }

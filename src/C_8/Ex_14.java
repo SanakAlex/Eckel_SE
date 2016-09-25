@@ -17,6 +17,11 @@ class Shared {
         if(--refcount == 0)
             print("Disposing " + this);
     }
+    protected void finalize() {
+        if (refcount != 0) {
+            print("Error: object is not properly cleaned-up!");
+        }
+    }
     public String toString() { return "Shared " + id; }
 }
 
@@ -36,7 +41,7 @@ class Composing {
     public String toString() { return "Composing " + id; }
 }
 
-public class Ex_13 {
+public class Ex_14 {
     public static void main(String[] args) {
         Shared shared = new Shared();
         Composing[] composing = { new Composing(shared),
@@ -44,5 +49,9 @@ public class Ex_13 {
                 new Composing(shared), new Composing(shared) };
         for(Composing c : composing)
             c.dispose();
+        System.gc();
+        // Verify failure:
+        new Composing(new Shared());
+        System.gc();
     }
 }
