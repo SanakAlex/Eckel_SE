@@ -74,6 +74,7 @@ abstract class Ex_4 {
     abstract void method();
 }
 class Ex_4_2 extends Ex_4 {
+
     void method() {
         System.out.println("Ex_4_2");
     }
@@ -83,7 +84,7 @@ class Ex_4_2 extends Ex_4 {
 
 public class Ex_1_2 {
     static void lowChange(Ex_4 ex_4) {
-        (ex_4).method();
+        ex_4.method();
     }
 
     public static void main(String[] args) {
