@@ -1,6 +1,6 @@
 package C_9;
 
-import static net.mindview.util.Print.print;
+//import static net.mindview.util.Print.print;
 
 abstract class Rodent {
     Rodent() {
