@@ -11,12 +11,13 @@ class User {
 }
 public class tempTest {
 
-
     public static void main(String[] args) throws ParseException {
-        Timestamp d = new Timestamp(System.currentTimeMillis());
-        Date test = new SimpleDateFormat("dd-MM-yyyy HH:mm").parse("09-02-2017 22:00");
-        System.out.println(d);
-        System.out.println(test);
-        System.out.println(d.getDate()==test.getDate() && d.getYear()==test.getYear() && d.getMonth()==test.getMonth());
+        char[] ch = null;
+        String s = null;
+        Object ob = null;
+//        System.out.println(ch);
+        System.out.println(new Boolean(!true || true));
+        System.out.println(s);
+        System.out.println(ob);
     }
 }
