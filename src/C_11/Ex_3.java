@@ -10,7 +10,7 @@ interface Selector {
 }
 
 class Sequence {
-    private List<Object> items;
+    protected List<Object> items;
     private int next = 0;
     public Sequence() { items = new ArrayList<>(); }
     public void add(Object x) {
