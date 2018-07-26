@@ -1,6 +1,8 @@
-package C_10;
+package C_11;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 abstract class Event {
@@ -25,24 +27,30 @@ abstract class Event {
 
 class Controller {
     // A class from java.util to hold Event objects:
-    private List<Event> eventList = new ArrayList<Event>();
+    private List<Event> eventList = new LinkedList<>();
 
     public void addEvent(Event c) {
         eventList.add(c);
     }
 
     public void run() {
-        while (eventList.size() > 0)
+        while (eventList.size() > 0) {
             // Make a copy so you're not modifying the list
             // while you're selecting the elements in it:
-            for (Event e : new ArrayList<Event>(eventList))
-                if (e.ready()) {
-                    System.out.println(e);
-                    e.action();
-                    eventList.remove(e);
+            Iterator<Event> iterator = new LinkedList<>(eventList).iterator();
+            while (iterator.hasNext()) {
+                Event event = iterator.next();
+                if (event.ready()) {
+                    System.out.println(event);
+                    event.action();
+                    iterator.remove();
                 }
+            }
+
+        }
     }
 }
+
 
 class GreenhouseControls extends Controller {
     private boolean light = false;
@@ -53,8 +61,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here to
-            // physically turn on the light.
             light = true;
         }
 
@@ -69,8 +75,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here to
-            // physically turn off the light.
             light = false;
         }
 
@@ -87,7 +91,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here.
             water = true;
         }
 
@@ -102,7 +105,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here.
             water = false;
         }
 
@@ -119,7 +121,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here.
             thermostat = "Night";
         }
 
@@ -134,7 +135,6 @@ class GreenhouseControls extends Controller {
         }
 
         public void action() {
-            // Put hardware control code here.
             thermostat = "Day";
         }
 
@@ -143,8 +143,6 @@ class GreenhouseControls extends Controller {
         }
     }
 
-    // An example of an action() that inserts a
-    // new one of itself into the event list:
     public class Bell extends Event {
         public Bell(long delayTime) {
             super(delayTime);
@@ -171,10 +169,10 @@ class GreenhouseControls extends Controller {
 
         public void action() {
             for (Event e : eventList) {
-                e.start(); // Rerun each event
+                e.start();
                 addEvent(e);
             }
-            start(); // Rerun this Event
+            start();
             addEvent(this);
         }
 
@@ -196,43 +194,11 @@ class GreenhouseControls extends Controller {
             return "Terminating";
         }
     }
-
-    private boolean ventilation = false;
-
-    public class VentilationOn extends Event {
-        public VentilationOn(long delayTime) {
-            super(delayTime);
-        }
-
-        @Override
-        public void action() {
-            ventilation = true;
-        }
-
-        @Override
-        public String toString() {
-            return "Ventilation is on";
-        }
-    }
-
-    public class VentilationOff extends Event {
-        public VentilationOff(long delayTime) {
-            super(delayTime);
-        }
-
-        @Override
-        public void action() {
-            ventilation = true;
-        }
-
-        @Override
-        public String toString() {
-            return "Ventilation is on";
-        }
-    }
 }
 
-public class Ex_24 {
+
+public class Ex_13 {
+
     public static void main(String[] args) {
         GreenhouseControls gc = new GreenhouseControls();
         // Instead of hard-wiring, you could parse
@@ -244,11 +210,10 @@ public class Ex_24 {
                 gc.new LightOff(400),
                 gc.new WaterOn(600),
                 gc.new WaterOff(800),
-                gc.new ThermostatDay(1400),
-                gc.new VentilationOn(1500)
+                gc.new ThermostatDay(1400)
         };
         gc.addEvent(gc.new Restart(2000, eventList));
-        if (args.length == 1)
+        if(args.length == 1)
             gc.addEvent(
                     new GreenhouseControls.Terminate(
                             new Integer(args[0])));
