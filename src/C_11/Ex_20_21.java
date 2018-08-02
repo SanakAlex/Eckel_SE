@@ -3,7 +3,6 @@ package C_11;
 import net.mindview.util.TextFile;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Ex_20_21 {
     private final static Set<Character> vowels =
