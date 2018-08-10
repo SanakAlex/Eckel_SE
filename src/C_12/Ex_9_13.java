@@ -1,6 +1,6 @@
 package C_12;
 
-public class Ex_9 {
+public class Ex_9_13 {
     static class MyException1 extends Exception {
     }
     static class MyException2 extends Exception {
@@ -20,6 +20,10 @@ public class Ex_9 {
             raiseException();
         } catch (Exception e) {
             System.out.println(e.getClass().getName());
+            throw new NullPointerException();
+        } finally {
+            System.out.println("------Ex_13--------");
+            System.out.println("finally block");
         }
     }
 }
