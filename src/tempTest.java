@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 class MyException extends Exception {
     private static Logger logger = Logger.getLogger("MyException");
@@ -18,8 +19,6 @@ class MyException extends Exception {
 public class tempTest {
 //    Throwable
 
-
-
     public static void main(String[] args) throws ParseException, MyException {
         /*List<Integer> list = Arrays.asList(16, 17, 18, 19, 20);
         list.set(1, 99); // OK -- modify an element
@@ -30,6 +29,29 @@ public class tempTest {
                         "'  and identifycode='" + "')";
         System.out.println(sql);*/
 
-        throw new MyException();
+//        throw new MyException();
+        /*long time = System.nanoTime();
+        String str = "";
+        for (int i = 0; i < 100000; i++) {
+            str += i;
+        }
+        long l = System.nanoTime() - time;
+        System.out.println("Time: " + l);
+
+        time = System.nanoTime();
+        StringBuilder strB = new StringBuilder();
+        for (int i = 0; i < 100000; i++) {
+            strB.append(i);
+        }
+        l = System.nanoTime() - time;
+        System.out.println("Time: " + l);*/
+
+        char c1 = 064770;
+        System.out.println(c1);
+        char c3 = 0xbeef;
+        char c6 = '\uface';
+        System.out.println(c6);
+
+//        Pattern
     }
 }
