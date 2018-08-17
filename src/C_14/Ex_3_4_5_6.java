@@ -6,17 +6,22 @@ import java.util.List;
 
 public class Ex_3_4_5_6 {
     abstract class Shape {
-        boolean checked;
+        private boolean checked;
 
         public boolean isChecked() {
             return checked;
         }
 
-        public void setChecked(boolean checked) {
-            this.checked = checked;
+        public void check() {
+            this.checked = true;
+        }
+
+        public void uncheck() {
+            this.checked = false;
         }
 
         void draw() { System.out.println(this + ".draw()"); }
+
         public String toString(){
             return "is " + (isChecked() ? "checked" : "not checked");
         }
@@ -50,10 +55,10 @@ public class Ex_3_4_5_6 {
      * Ex_6 part
      * @param collection to check shape items in it
      */
-    static void matchPolygons(Collection<Shape> collection) {
+    static void matchPolygons(Class<?> shapeClass, Collection<Shape> collection) {
         for (Shape shape : collection) {
-            if (!(shape instanceof Circle)) {
-                shape.setChecked(true);
+            if (shape.getClass().equals(shapeClass)) {
+                shape.check();
             }
         }
     }
@@ -83,7 +88,8 @@ public class Ex_3_4_5_6 {
         }
 
         System.out.println("---Ex_6----");
-        matchPolygons(shapeList);
+        matchPolygons(Triangle.class, shapeList);
+        matchPolygons(Square.class, shapeList);
         for (Shape shape1 : shapeList) {
             System.out.println(shape1);
         }
